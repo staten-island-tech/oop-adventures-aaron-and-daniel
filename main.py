@@ -8,6 +8,7 @@ text_font = pygame.font.SysFont("Arial", 30)
 def draw_text(text, font,text_col, x, y):
     img = font.render(text, True, text_col)
     screen.blit(img, (x, y))
+    text_rect = text.get_rect(center=(830, 200))
 run = True
 while run:
     screen.fill((0, 0, 255))
