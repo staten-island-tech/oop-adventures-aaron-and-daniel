@@ -8,7 +8,7 @@ screen = pygame.display.set_mode((screen_height, screen_width))
 pygame.display.set_caption('Jeopardy')
 
 BLUE = (0, 0, 255) 
-WHITE = (255, 255, 255) 
+YELLOW = (255, 255, 0) 
 
 font = pygame.font.Font(None, 100)  
 
@@ -19,7 +19,8 @@ while True:
             sys.exit()
 
     screen.fill(BLUE)
-    text = font.render('Jeopardy', True, WHITE)
+    text = font.render('Jeopardy', True, YELLOW)
     text_rect = text.get_rect(center=(830, 200))
     screen.blit(text, text_rect)
     pygame.display.flip()
+
