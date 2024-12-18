@@ -1,4 +1,3 @@
-print("Welcome")
 money = 0
 Correct_answer = True
 def correct(money):
