@@ -1,21 +1,25 @@
 import pygame
 import sys
 pygame.init()
-screen_width = 1700
-screen_height = 900
-screen = pygame.display.set_mode((screen_width, screen_height))
-text_font = pygame.font.SysFont("Arial", 30)
-def draw_text(text, font,text_col, x, y):
-    img = font.render(text, True, text_col)
-    screen.blit(img, (x, y))
-    text_rect = text.get_rect(center=(830, 200))
-run = True
-while run:
-    screen.fill((0, 0, 255))
-    draw_text("Jeopardy", text_font, (0, 0, 0), 220, 150)
+
+screen_width = 900
+screen_height = 1700
+screen = pygame.display.set_mode((screen_height, screen_width))
+pygame.display.set_caption('Jeopardy')
+
+BLUE = (0, 0, 255) 
+YELLOW = (255, 255, 0) 
+
+font = pygame.font.Font(None, 100)  
+
+while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
-            run = False
-    pygame.display.flip()
+            pygame.quit()
+            sys.exit()
 
-pygame.quit()
+    screen.fill(BLUE)
+    text = font.render('Jeopardy', True, YELLOW)
+    text_rect = text.get_rect(center=(830, 200))
+    screen.blit(text, text_rect)
+    pygame.display.flip()
