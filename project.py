@@ -20,6 +20,6 @@ while True:
 
     screen.fill(BLUE)
     text = font.render('Jeopardy', True, WHITE)
-    text_rect = text.get_rect(center=(700, -800))
+    text_rect = text.get_rect(center=(830, 200))
     screen.blit(text, text_rect)
     pygame.display.flip()
