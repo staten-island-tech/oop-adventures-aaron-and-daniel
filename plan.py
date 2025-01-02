@@ -1,2 +1,2 @@
-# Categores
-# sports, history/geography, random, games, music
+# trivia
+# sports, history/geography, random, games, music questions
