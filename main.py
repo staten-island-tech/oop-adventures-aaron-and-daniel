@@ -1,5 +1,6 @@
 import pygame
 import sys
+import tkinter as tk
 pygame.init()
 
 screen_width = 900
@@ -24,8 +25,17 @@ while True:
     screen.blit(text, text_rect)
 
     text2 = font.render('Play Game', True, YELLOW)
-    text_rect2 = text.get_rect(center=(830, 500))
+    text_rect2 = text.get_rect(center=(800, 500))
     screen.blit(text2, text_rect2)
     pygame.display.flip()
     count = 0
 
+def on_button_click():
+    print("Game Starting")
+
+root = tk.Tk()
+root.title("Clickable Button Example")
+
+button = tk.Button(root, text="Play Game", command=on_button_click)
+button.pack(pady=20)
+break
