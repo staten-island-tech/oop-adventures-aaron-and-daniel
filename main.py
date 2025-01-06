@@ -28,6 +28,11 @@ questions = [
     Question("What is 5 + 7?", ["10", "11", "12", "13"], "12", ["10", "11", "13"]),
     Question("Who wrote 'Romeo and Juliet'?", ["Shakespeare", "Dickens", "Hemingway", "Austen"], "Shakespeare", ["Dickens", "Hemingway", "Austen"]),
     Question("What is the largest planet?", ["Earth", "Jupiter", "Mars", "Venus"], "Jupiter", ["Earth", "Mars", "Venus"]),
+    Question("Who is the 35th president of the United States?", ["Dwight David Eisenhower", "Lyndon Johnson", "John Fitzgerald Kennedy", "James Earl Carter Jr."], "John Fitzgerald Kennedy",["Dwight David Eisenhower", "Lyndon Johnson", "James Earl Carter Jr."]),
+    Question("Who wrote the Harry Potter Series?", ["Shakespeare", "Dickens", "JK Rowling", "Austen"], "JK Rowling",["Shakespeare", "Dickens","Austen"]),
+    Question("Which element has the chemical symbol 'Ar'?", ["Argon", "Iron", "Nitrogen", "Aluminum"], "Argon",["Iron", "Nitrogen", "Aluminum"]),
+    Question("What is 30 x 896", ["26880", "26480", "26870", "25880"], "26880",["26480", "26870", "25880"]),
+    Question("What is the capital of France?", ["Berlin", "Madrid", "Paris", "Rome"], "Paris", ["Berlin", "Madrid", "Rome"]),
 ]
 
 class Button:
