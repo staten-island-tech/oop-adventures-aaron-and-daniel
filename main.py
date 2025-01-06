@@ -89,6 +89,12 @@ def run_trivia_game():
                     game_over = True
                 break
         pygame.display.flip()
+    screen.fill(WHITE)
+    game_over_text = large_font.render("Game Over!", True, BLACK)
+    score_text = font.render(f"Your Score: {score}/{len(questions)}", True, BLACK)
+    
+    screen.blit(game_over_text, (screen_width // 2 - game_over_text.get_width() // 2, screen_height // 3))
+    screen.blit(score_text, (screen_width // 2 - score_text.get_width() // 2, screen_height // 2))
     
     pygame.display.flip()
 run_trivia_game()
