@@ -9,6 +9,10 @@ questions = [
     {"question": "What is the largest planet in our solar system?", "options": ["Earth", "Mars", "Jupiter", "Saturn"], "answer": "Jupiter"},
     {"question": "Which element has the chemical symbol 'Ar'?", "options": ["Argon", "Iron", "Nitrogen", "Aluminum"], "answer": "Argon"},
     {"question": "What is 30 x 896", "options": ["26880", "26480", "26870", "25880"], "answer": "26880"},
+    {"question": "Who is the 35th president of the United States", "options": ["Dwight David Eisenhower", "Lyndon Johnson", "John Fitzgerald Kennedy", "James Earl Carter Jr."], "answer": "John Fitzgerald Kennedy"},
+    {"question": "Who wrote the Harry Potter Series?", "options": ["Shakespeare", "Dickens", "JK Rowling", "Austen"], "answer": "JK Rowling"},
+    {"question": "Which element has the chemical symbol 'Ar'?", "options": ["Argon", "Iron", "Nitrogen", "Aluminum"], "answer": "Argon"},
+    {"question": "What is 30 x 896", "options": ["26880", "26480", "26870", "25880"], "answer": "26880"},
 ]
 
 screen_width = 900
