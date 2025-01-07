@@ -7,7 +7,8 @@ screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
 pygame.display.set_caption("trivia")
-
+background = pygame.image.load("neon.webp")  # Replace with your neon.webp file path
+background = pygame.transform.scale(background, (screen_width, screen_height)) 
 WHITE = (255, 255, 255)
 BLUE = (0, 0, 255)
 GREEN = (0, 255, 0)
@@ -26,8 +27,9 @@ class Question:
 questions = [
     Question("What is the capital of France?", ["Berlin", "Madrid", "Paris", "Rome"], "Paris"),
     Question("What is 5 + 7?", ["10", "11", "12", "13"], "12"),
-    Question("Who wrote 'Romeo and Juliet'?", ["Shakespeare", "Dickens", "Hemingway", "Austen"], "Shakespeare"),
+    Question("Who was the first president of the US?", ["Donald Trump", "George Washington", "John Adams", "Abraham Lincoln"], "George Washington"),
     Question("What is the largest planet?", ["Earth", "Jupiter", "Mars", "Venus"], "Jupiter"),
+    Question("What is the biggest state in the US?", ["Texas", "New York", "Alaska", "California"], "Alaska"),
 ]
 
 class Button:
@@ -76,8 +78,6 @@ def run_trivia_game():
         random.shuffle(question.options)
     
     while True:
-        screen.fill(WHITE)
-        
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
@@ -153,7 +153,7 @@ def run_trivia_game():
                 game_over = True
 
             if selected_correct and not selected_wrong:
-                pygame.time.wait(1000)  # Wait for 1 second to show the correct answer
+                pygame.time.wait(500)  # Wait for 1 second to show the correct answer
                 current_question += 1
                 if current_question >= len(questions):
                     game_over = True
