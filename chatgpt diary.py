@@ -1,7 +1,8 @@
-# asked chatgpt - how to make a pygame display screen?
-# how to make a button in pygame?
-# how to make a streak system for the questions?
-# how to randomize the questions?
+# asked chatgpt - how to make a pygame display screen
+# how to make a button in pygame
+# how to make a streak system for the questions
+# how to randomize the questions
+# how to make an image the background on pygame
 
 
 
