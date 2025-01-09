@@ -20,7 +20,6 @@ large_font = pygame.font.Font(None, 50)
 background = pygame.image.load("neon.webp")
 background = pygame.transform.scale(background, (screen_width, screen_height))  
 
-# Load the streak image
 streak_image = pygame.image.load("fire.png") 
 streak_image = pygame.transform.scale(streak_image, (50, 40))  
 
@@ -52,9 +51,9 @@ questions = [
     Question("Which is the largest ocean on Earth?", ["Atlantic", "Pacific", "Indian", "Arctic"], "Pacific"),
     Question("In which year did World War II end?", ["1940", "1942", "1945", "1950"], "1945"),
     Question("What is the smallest country in the world?", ["Vatican City", "Monaco", "San Marino", "Liechtenstein"], "Vatican City"),  
-    Question("Which country is famous for the Eiffel Tower?", ["Germany", "Spain", "France", "Italy"], "France"),
+    Question("Which country has the Eiffel Tower?", ["Germany", "Spain", "France", "Italy"], "France"),
     Question("What is the currency used in Japan?", ["Yuan", "Won", "Yen", "Ringgit"], "Yen"),
-    Question("Which animal is known as the King of the Jungle?", ["Lion", "Tiger", "Elephant", "Bear"], "Lion")
+    Question("Which animal is the King of the Jungle?", ["Lion", "Tiger", "Elephant", "Bear"], "Lion")
 ]
 
 class Button:
@@ -141,7 +140,6 @@ def run_trivia_game():
             question_text = font.render(question.question, True, WHITE)
             screen.blit(question_text, (205, 100))
 
-            # Power-Up Activation
             if streak >= 5 and not power_up_used:
                 use_power_up_button = Button(screen_width // 2 - 100, screen_height // 1.5, 250, 50, BLUE, "Use 50/50 Powerup")
                 use_power_up_button.draw(screen)
@@ -151,11 +149,9 @@ def run_trivia_game():
 
                 if use_power_up_button.is_clicked(mouse_pos, mouse_pressed):
                     power_up_used = True
-                    # Ensure correct answer stays and remove two random incorrect options
                     correct_option = question.correct_answer
                     incorrect_options = [option for option in question.options if option != correct_option]
                     random.shuffle(incorrect_options)
-                    # Keep only the correct answer and one random incorrect answer
                     question.options = [correct_option] + incorrect_options[:1]
 
             # Display answer choices

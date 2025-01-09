@@ -1,4 +1,5 @@
-# asked chatgpt - how to make a pygame display screen
+# asked chatgpt:
+# how to make a pygame display screen
 # how to make a button in pygame
 # how to make a streak system for the questions
 # how to randomize the questions
@@ -13,3 +14,6 @@
 # add a streak system
 # make it be able to play again
 # make power-up items
+
+
+# bugs that we faced included correct answers being chosen end the game, high streak not saving, and the 50/50 powerup staying on the question when played again
