@@ -1,22 +1,21 @@
-            if streak >= 5 and not power_up_used:
-                use_power_up_button = Button(screen_width // 2 - 100, screen_height // 1.5, 250, 50, BLUE, "Use 50/50 Powerup")
-                use_power_up_button.draw(screen)
+if streak >= 5 and not power_up_used:
+    use_power_up_button = Button(screen_width // 2 - 100, screen_height // 1.5, 250, 50, BLUE, "Use 50/50 Powerup")
+    use_power_up_button.draw(screen)
 
-                mouse_pos = pygame.mouse.get_pos()
-                mouse_pressed = pygame.mouse.get_pressed()
+    mouse_pos = pygame.mouse.get_pos()
+    mouse_pressed = pygame.mouse.get_pressed()
 
-                if use_power_up_button.is_clicked(mouse_pos, mouse_pressed):
-                    power_up_used = True
-                    correct_option = question.correct_answer
-                    incorrect_options = [option for option in question.options if option != correct_option]
-                    random.shuffle(incorrect_options)
-                    question.options = [correct_option] + incorrect_options[:1]
+    if use_power_up_button.is_clicked(mouse_pos, mouse_pressed):
+        power_up_used = True
+        correct_option = question.correct_answer
+        incorrect_options = [option for option in question.options if option != correct_option]
+        random.shuffle(incorrect_options)
+        question.options = [correct_option] + incorrect_options[:1]
 
-            # Display answer choices
-            buttons = []
-            for i, option in enumerate(question.options):
-                button = Button(100, 150 + i * 60, 600, 50, BLUE, option)
-                buttons.append(button)
+        buttons = []
+        for i, option in enumerate(question.options):
+            button = Button(100, 150 + i * 60, 600, 50, BLUE, option)
+            buttons.append(button)
             
             mouse_pos = pygame.mouse.get_pos()
             mouse_pressed = pygame.mouse.get_pressed()
