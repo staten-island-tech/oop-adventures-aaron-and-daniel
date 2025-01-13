@@ -59,7 +59,6 @@ questions = [
     Question("Which country has the most pyramids?", ["Egypt", "Mexico", "Sudan", "Peru"], "Sudan"),
     Question("What is the capital of Australia?", ["Sydney", "Melbourne", "Canberra", "Brisbane"], "Canberra"),
     Question("What is the most spoken language in the world?", ["English", "Mandarin", "Spanish", "Hindi"], "Mandarin"),
-    Question("Which animal has a black and white color pattern?", ["Panda", "Zebra", "Skunk", "Dalmatian"], "Panda"),
     Question("In which country is the Great Barrier Reef?", ["Australia", "United States", "Brazil", "South Africa"], "Australia"),
     Question("Which element has the chemical symbol 'O'?", ["Oxygen", "Gold", "Osmium", "Ozone"], "Oxygen"),
 ]
@@ -88,12 +87,14 @@ class Button:
 
 def run_trivia_game():
     def reset_game():
-        nonlocal current_question, score, streak, correct_answer_streak, highest_streak, game_over, power_up_used
+        nonlocal current_question, score, streak, correct_answer_streak, highest_streak, game_over, power_up_used, skip_button_used, second_power_up_used
         current_question = 0
         score = 0
         streak = 0
         correct_answer_streak = 0
         power_up_used = False
+        skip_button_used = False  
+        second_power_up_used = False 
         game_over = False
         random.shuffle(questions)
         for question in questions:
@@ -104,6 +105,8 @@ def run_trivia_game():
     streak = 0
     correct_answer_streak = 0
     power_up_used = False
+    skip_button_used = False  
+    second_power_up_used = False 
     highest_streak = load_highest_streak()
     game_over = False
 
@@ -150,7 +153,7 @@ def run_trivia_game():
             question_text = font.render(question.question, True, WHITE)
             screen.blit(question_text, (205, 100))
 
-            if streak >= 1:  # Display skip button after streak reaches 15
+            if streak >= 10 and not skip_button_used: 
                 skip_button = Button(screen_width // 2 - 100, screen_height // 1.5, 200, 50, BLUE, "Skip Question")
                 skip_button.draw(screen)
 
@@ -158,19 +161,32 @@ def run_trivia_game():
                 mouse_pressed = pygame.mouse.get_pressed()
 
                 if skip_button.is_clicked(mouse_pos, mouse_pressed):
-                    streak = 1
+                    streak = 10
                     current_question += 1
-                    skip_button = True
-                
+                    skip_button_used = True 
+                    score += 1 
+                    streak += 1  
+
                     if current_question >= len(questions):
                         game_over = True
 
-            if correct_answer_streak >= 5 and not power_up_used:  # 50/50 powerup logic
+            if correct_answer_streak >= 5 and not power_up_used: 
                 use_power_up_button = Button(screen_width // 2 - 100, screen_height // 1.5, 250, 50, BLUE, "Use 50/50 Powerup")
                 use_power_up_button.draw(screen)
 
                 if use_power_up_button.is_clicked(mouse_pos, mouse_pressed):
                     power_up_used = True
+                    correct_option = question.correct_answer
+                    incorrect_options = [option for option in question.options if option != correct_option]
+                    random.shuffle(incorrect_options)
+                    question.options = [correct_option] + incorrect_options[:1]
+
+            if streak >= 15 and not second_power_up_used:
+                second_power_up_button = Button(screen_width // 2 - 100, screen_height // 1.5 + 60, 250, 50, BLUE, "Use 50/50 Powerup")
+                second_power_up_button.draw(screen)
+
+                if second_power_up_button.is_clicked(mouse_pos, mouse_pressed):
+                    second_power_up_used = True
                     correct_option = question.correct_answer
                     incorrect_options = [option for option in question.options if option != correct_option]
                     random.shuffle(incorrect_options)
@@ -201,7 +217,6 @@ def run_trivia_game():
                     else:
                         selected_wrong = True
                         correct_answer_streak = 0
-                        # Streak only resets on wrong answer
                         if not game_over:  
                             streak = 0
 
@@ -220,7 +235,7 @@ def run_trivia_game():
                 game_over = True
 
             if selected_correct and not selected_wrong:
-                pygame.time.wait(100)
+                pygame.time.wait(500)
                 current_question += 1
                 if current_question >= len(questions):
                     game_over = True
@@ -239,5 +254,4 @@ def run_trivia_game():
             elif event.type == pygame.KEYDOWN:
                 pygame.quit()
                 sys.exit()
-
 run_trivia_game()
