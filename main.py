@@ -153,8 +153,6 @@ def run_trivia_game():
                     incorrect_options = [option for option in question.options if option != correct_option]
                     random.shuffle(incorrect_options)
                     question.options = [correct_option] + incorrect_options[:1]
-
-            # Display answer choices
             buttons = []
             for i, option in enumerate(question.options):
                 button = Button(100, 150 + i * 60, 600, 50, BLUE, option)
