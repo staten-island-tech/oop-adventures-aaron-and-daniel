@@ -9,6 +9,7 @@ how to randomize the questions
 
 how to make an image the background on pygame
 
+how to make a skip question and 50/50 powerup button
 
 
 # PLANNING

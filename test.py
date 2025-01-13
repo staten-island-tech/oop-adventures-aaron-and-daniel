@@ -6,7 +6,7 @@ pygame.init()
 screen_width = 800
 screen_height = 600
 screen = pygame.display.set_mode((screen_width, screen_height))
-pygame.display.set_caption("Trivia")
+pygame.display.set_caption("trivia")
 
 WHITE = (255, 255, 255)
 BLUE = (0, 0, 255)
@@ -18,10 +18,10 @@ font = pygame.font.Font(None, 36)
 large_font = pygame.font.Font(None, 50)
 
 background = pygame.image.load("neon.webp")
-background = pygame.transform.scale(background, (screen_width, screen_height))
+background = pygame.transform.scale(background, (screen_width, screen_height))  
 
-streak_image = pygame.image.load("fire.png")
-streak_image = pygame.transform.scale(streak_image, (50, 40))
+streak_image = pygame.image.load("fire.png") 
+streak_image = pygame.transform.scale(streak_image, (50, 40))  
 
 def load_highest_streak():
     try:
@@ -53,20 +53,7 @@ questions = [
     Question("What is the smallest country in the world?", ["Vatican City", "Monaco", "San Marino", "Liechtenstein"], "Vatican City"),  
     Question("Which country has the Eiffel Tower?", ["Germany", "Spain", "France", "Italy"], "France"),
     Question("What is the currency used in Japan?", ["Yuan", "Won", "Yen", "Ringgit"], "Yen"),
-    Question("Which animal is the King of the Jungle?", ["Lion", "Tiger", "Elephant", "Bear"], "Lion"),
-    Question("Which city is known as the Big Apple?", ["Los Angeles", "Chicago", "New York City", "San Francisco"], "New York City"),
-    Question("What is the tallest mountain in the world?", ["Mount Kilimanjaro", "Mount Everest", "Mount Fuji", "Mount Elbrus"], "Mount Everest"),
-    Question("Which country has the most pyramids?", ["Egypt", "Mexico", "Sudan", "Peru"], "Sudan"),
-    Question("What is the capital of Australia?", ["Sydney", "Melbourne", "Canberra", "Brisbane"], "Canberra"),
-    Question("What is the most spoken language in the world?", ["English", "Mandarin", "Spanish", "Hindi"], "Mandarin"),
-    Question("In which country is the Great Barrier Reef?", ["Australia", "United States", "Brazil", "South Africa"], "Australia"),
-    Question("Which element has the chemical symbol 'O'?", ["Oxygen", "Gold", "Osmium", "Ozone"], "Oxygen"),
-    Question("Which planet is known as the Red Planet?", ["Earth", "Mars", "Jupiter", "Saturn"], "Mars"),
-    Question("What is the largest mammal?", ["Elephant", "Blue Whale", "Giraffe", "Shark"], "Blue Whale"),
-    Question("What is the currency of the United Kingdom?", ["Euro", "Pound", "Dollar", "Yen"], "Pound"),
-    Question("What is the capital of Canada?", ["Toronto", "Ottawa", "Vancouver", "Montreal"], "Ottawa"),
-    Question("Who painted the Mona Lisa?", ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Claude Monet"], "Leonardo da Vinci"),
-    Question("Which planet is closest to the sun?", ["Earth", "Mercury", "Venus", "Mars"], "Mercury"),
+    Question("Which animal is the King of the Jungle?", ["Lion", "Tiger", "Elephant", "Bear"], "Lion")
 ]
 
 class Button:
@@ -75,7 +62,7 @@ class Button:
         self.color = color
         self.text = text
         self.font = pygame.font.Font(None, 36)
-
+    
     def draw(self, screen, color=None):
         if color:
             pygame.draw.rect(screen, color, self.rect)
@@ -84,23 +71,22 @@ class Button:
         text_surface = self.font.render(self.text, True, WHITE)
         text_rect = text_surface.get_rect(center=self.rect.center)
         screen.blit(text_surface, text_rect)
-
+    
     def is_clicked(self, mouse_pos, mouse_pressed):
         if self.rect.collidepoint(mouse_pos):
-            if mouse_pressed[0]:
+            if mouse_pressed[0]: 
                 return True
         return False
 
+
 def run_trivia_game():
     def reset_game():
-        nonlocal current_question, score, streak, correct_answer_streak, highest_streak, game_over, power_up_used, skip_button_used, second_power_up_used
+        nonlocal current_question, score, streak, correct_answer_streak, highest_streak, game_over, power_up_used
         current_question = 0
         score = 0
         streak = 0
-        correct_answer_streak = 0
+        correct_answer_streak = 0  # Reset correct answer streak
         power_up_used = False
-        skip_button_used = False  
-        second_power_up_used = False 
         game_over = False
         random.shuffle(questions)
         for question in questions:
@@ -109,26 +95,19 @@ def run_trivia_game():
     current_question = 0
     score = 0
     streak = 0
-    correct_answer_streak = 0
+    correct_answer_streak = 0  # Track the streak of consecutive correct answers
     power_up_used = False
-    skip_button_used = False  
-    second_power_up_used = False 
-    highest_streak = load_highest_streak()
+    highest_streak = load_highest_streak()  
     game_over = False
-
+    
     random.shuffle(questions)
     for question in questions:
         random.shuffle(question.options)
-
+    
     while True:
         screen.fill(WHITE)
         screen.blit(background, (0, 0))
-
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-
+        
         if game_over:
             game_over_text = large_font.render("Game Over!", True, WHITE)
             score_text = font.render(f"Your Score: {score}/{len(questions)}", True, WHITE)
@@ -138,8 +117,8 @@ def run_trivia_game():
             screen.blit(game_over_text, (screen_width // 2 - game_over_text.get_width() // 2, screen_height // 3))
             screen.blit(score_text, (screen_width // 2 - score_text.get_width() // 2, screen_height // 2))
             screen.blit(streak_text, (20, 20)) 
-            screen.blit(highest_streak_text, (screen_width - highest_streak_text.get_width() - 20, 20))
-
+            screen.blit(highest_streak_text, (screen_width - highest_streak_text.get_width() - 20, 20))  
+            
             play_again_button = Button(screen_width // 2 - 100, screen_height // 1.5, 200, 50, BLUE, "Play Again")
             play_again_button.draw(screen)
 
@@ -151,48 +130,24 @@ def run_trivia_game():
             if play_again_button.is_clicked(mouse_pos, mouse_pressed):
                 if streak > highest_streak:
                     highest_streak = streak
-                    save_highest_streak(highest_streak)
-                reset_game()
+                    save_highest_streak(highest_streak)  
+                reset_game()  
 
         else:
             question = questions[current_question]
             question_text = font.render(question.question, True, WHITE)
             screen.blit(question_text, (205, 100))
 
-            if streak >= 10 and not skip_button_used: 
-                skip_button = Button(screen_width // 2 - 100, screen_height // 1.5, 200, 50, BLUE, "Skip Question")
-                skip_button.draw(screen)
+            # Power-up available every 10 correct answers in a row
+            if correct_answer_streak >= 10 and not power_up_used:
+                use_power_up_button = Button(screen_width // 2 - 100, screen_height // 1.5, 250, 50, BLUE, "Use 50/50 Powerup")
+                use_power_up_button.draw(screen)
 
                 mouse_pos = pygame.mouse.get_pos()
                 mouse_pressed = pygame.mouse.get_pressed()
 
-                if skip_button.is_clicked(mouse_pos, mouse_pressed):
-                    streak = 10
-                    current_question += 1
-                    skip_button_used = True 
-                    score += 1 
-                    streak += 1  
-
-                    if current_question >= len(questions):
-                        game_over = True
-
-            if correct_answer_streak >= 5 and not power_up_used: 
-                use_power_up_button = Button(screen_width // 2 - 100, screen_height // 1.5, 250, 50, BLUE, "Use 50/50 Powerup")
-                use_power_up_button.draw(screen)
-
                 if use_power_up_button.is_clicked(mouse_pos, mouse_pressed):
                     power_up_used = True
-                    correct_option = question.correct_answer
-                    incorrect_options = [option for option in question.options if option != correct_option]
-                    random.shuffle(incorrect_options)
-                    question.options = [correct_option] + incorrect_options[:1]
-
-            if streak >= 15 and not second_power_up_used:
-                second_power_up_button = Button(screen_width // 2 - 100, screen_height // 1.5 + 60, 250, 50, BLUE, "Use 50/50 Powerup")
-                second_power_up_button.draw(screen)
-
-                if second_power_up_button.is_clicked(mouse_pos, mouse_pressed):
-                    second_power_up_used = True
                     correct_option = question.correct_answer
                     incorrect_options = [option for option in question.options if option != correct_option]
                     random.shuffle(incorrect_options)
@@ -202,7 +157,7 @@ def run_trivia_game():
             for i, option in enumerate(question.options):
                 button = Button(100, 150 + i * 60, 600, 50, BLUE, option)
                 buttons.append(button)
-
+            
             mouse_pos = pygame.mouse.get_pos()
             mouse_pressed = pygame.mouse.get_pressed()
 
@@ -216,15 +171,14 @@ def run_trivia_game():
                     if button.text == question.correct_answer:
                         score += 1
                         selected_correct = True
-                        correct_answer_streak += 1
-                        streak += 1
-                        if streak > highest_streak:
+                        correct_answer_streak += 1  # Increment the streak for correct answers
+                        streak += 1  
+                        if streak > highest_streak:  
                             highest_streak = streak
                     else:
                         selected_wrong = True
-                        correct_answer_streak = 0
-                        if not game_over:  
-                            streak = 0
+                        correct_answer_streak = 0  # Reset the correct answer streak on wrong answer
+                        streak = 0  
 
             for button in buttons:
                 if selected_answer == button.text:
@@ -241,28 +195,12 @@ def run_trivia_game():
                 game_over = True
 
             if selected_correct and not selected_wrong:
-                pygame.time.wait(500)
+                pygame.time.wait(100)  
                 current_question += 1
                 if current_question >= len(questions):
                     game_over = True
-            screen.blit(streak_image, (10, 10))
+            screen.blit(streak_image, (10, 10))  
             streak_text = font.render(f"Streak: {streak}", True, WHITE)
-            screen.blit(streak_text, (60, 15))
+            screen.blit(streak_text, (60, 15)) 
 
             pygame.display.flip()
-
-    waiting_for_exit = True
-    while waiting_for_exit:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                sys.exit()
-            elif event.type == pygame.KEYDOWN:
-                pygame.quit()
-                sys.exit()
-<<<<<<< HEAD
-
-run_trivia_game()
-=======
-run_trivia_game()
->>>>>>> aaron
