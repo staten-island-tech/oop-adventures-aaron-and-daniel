@@ -1,3 +1,1 @@
-import questions
-import power
-import system
+import main
