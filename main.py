@@ -61,6 +61,12 @@ questions = [
     Question("What is the most spoken language in the world?", ["English", "Mandarin", "Spanish", "Hindi"], "Mandarin"),
     Question("In which country is the Great Barrier Reef?", ["Australia", "United States", "Brazil", "South Africa"], "Australia"),
     Question("Which element has the chemical symbol 'O'?", ["Oxygen", "Gold", "Osmium", "Ozone"], "Oxygen"),
+    Question("Which planet is known as the Red Planet?", ["Earth", "Mars", "Jupiter", "Saturn"], "Mars"),
+    Question("What is the largest mammal?", ["Elephant", "Blue Whale", "Giraffe", "Shark"], "Blue Whale"),
+    Question("What is the currency of the United Kingdom?", ["Euro", "Pound", "Dollar", "Yen"], "Pound"),
+    Question("What is the capital of Canada?", ["Toronto", "Ottawa", "Vancouver", "Montreal"], "Ottawa"),
+    Question("Who painted the Mona Lisa?", ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Claude Monet"], "Leonardo da Vinci"),
+    Question("Which planet is closest to the sun?", ["Earth", "Mercury", "Venus", "Mars"], "Mercury"),
 ]
 
 class Button:
