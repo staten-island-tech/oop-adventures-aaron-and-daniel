@@ -260,9 +260,6 @@ def run_trivia_game():
             elif event.type == pygame.KEYDOWN:
                 pygame.quit()
                 sys.exit()
-<<<<<<< HEAD
 
 run_trivia_game()
-=======
-run_trivia_game()
->>>>>>> aaron
+
